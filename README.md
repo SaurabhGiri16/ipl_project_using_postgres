@@ -1,11 +1,16 @@
- 
- 
- ## Find number of matches played per Year.
 
-    select distinct season ,count(season) as Count_season from 
+        
+        
+# IPL_Project_Using_Postgres 
+
+ ###  Find number of matches played per Year.
+
+    select distinct season ,**count(season) as Count_season from 
     matches group by season order by  season;
 
+### Output :
 
+```
 '2008', '58'
 '2009', '57'
 '2010', '60'
@@ -16,14 +21,18 @@
 '2015', '59'
 '2016', '60'
 '2017', '59'
+```
 
 
-/* 
-Query_02 --> Find Number of matches won of all teams over all the years of IPL.
-*/
+### Find Number of matches won of all teams over all the years of IPL.
 
-select distinct winner ,count(winner) as Won from matches where winner != "" group by winner order by winner;
 
+    select distinct winner ,count(winner) as Won from 
+    matches where winner != "" group by winner order by winner;
+
+### Output :
+
+```
 'Chennai Super Kings', '79'
 'Deccan Chargers', '29'
 'Delhi Daredevils', '62'
@@ -38,15 +47,17 @@ select distinct winner ,count(winner) as Won from matches where winner != "" gro
 'Rising Pune Supergiants', '5'
 'Royal Challengers Bangalore', '73'
 'Sunrisers Hyderabad', '42'
+```
 
 
-/*
-Query_03 --> Find the year 2016 get the extra runs conceded per team .
-*/
-select distinct batting_team , SUM(extra_runs) as Extra_Run from deliveries 
- inner join matches on matches.id= deliveries.match_id and season = 2016 
- group by batting_team order by batting_team;
+ ## Find the year 2016 get the extra runs conceded per team .
+
+    select distinct batting_team , SUM(extra_runs) as Extra_Run from deliveries 
+    inner join matches on matches.id= deliveries.match_id and season = 2016 
+    group by batting_team order by batting_team;
  
+ ### Output :
+```
 'Delhi Daredevils', '109'
 'Gujarat Lions', '132'
 'Kings XI Punjab', '83'
@@ -55,14 +66,15 @@ select distinct batting_team , SUM(extra_runs) as Extra_Run from deliveries
 'Rising Pune Supergiants', '101'
 'Royal Challengers Bangalore', '118'
 'Sunrisers Hyderabad', '124'
+```
 
- 
- /* 
-Query_04 --> Find the year 2015 get the top economical bowlers.
- */
+### Find the year 2015 get the top economical bowlers.
 
-select bowler ,(sum(total_runs)*6.0)/(count(bowler)) as Most_Economical_Bowler from deliveries , matches
- where matches.id= deliveries.match_id and matches.season=2015 group by bowler 
- order by Most_Economical_Bowler limit 1;
+
+
+    select bowler ,(sum(total_runs)*6.0)/(count(bowler)) as Most_Economical_Bowler from deliveries , matches
+    where matches.id= deliveries.match_id and matches.season=2015 group by bowler 
+    order by Most_Economical_Bowler limit 1;
  
- 'RN ten Doeschate', '3.42857'
+ ### Output :
+ `'RN ten Doeschate', '3.42857'`
