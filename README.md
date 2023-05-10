@@ -49,7 +49,7 @@
 ```
 
 
- ## Find the year 2016 get the extra runs conceded per team .
+ ### Find the year 2016 get the extra runs conceded per team .
 
     select distinct batting_team , SUM(extra_runs) as Extra_Run from deliveries 
     inner join matches on matches.id= deliveries.match_id and season = 2016 
